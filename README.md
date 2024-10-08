@@ -30,7 +30,7 @@ Make sure you have the following installed:
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/discord-rpc-maker.git
+git clone https://github.com/browished/Discord-Web-Rpc.git
 cd discord-rpc-maker
 
 2. Install dependencies:
