@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPC Maker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Bubble Effect -->
+  <div class="bubble-container">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <div class="container">
+    <h1>Discord RPC Maker</h1>
+    <form id="rpc-form">
+      <label for="activityType">Activity Type:</label>
+      <select id="activityType" name="activityType">
+        <option value="STREAMING">Streaming</option>
+        <option value="PLAYING">Playing</option>
+        <option value="LISTENING">Listening</option>
+        <option value="WATCHING">Watching</option>
+      </select>
+
+      <label for="details">Details:</label>
+      <input type="text" id="details" name="details" required>
+
+      <label for="state">State (Optional):</label>
+      <input type="text" id="state" name="state">
+
+      <label for="url">URL (For Streaming):</label>
+      <input type="text" id="url" name="url">
+
+      <label for="largeImage">Large Image URL (Optional):</label>
+      <input type="text" id="largeImage" name="largeImage">
+
+      <label for="smallImage">Small Image URL (Optional):</label>
+      <input type="text" id="smallImage" name="smallImage">
+
+      <button type="submit">Update Status</button>
+    </form>
+  </div>
+
+  <footer>
+    Made by DevRock <span class="heart">❤️</span>
+  </footer>
+
+  <script>
+    document.getElementById('rpc-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = {
+        activityType: document.getElementById('activityType').value,
+        details: document.getElementById('details').value,
+        state: document.getElementById('state').value,
+        url: document.getElementById('url').value,
+        largeImage: document.getElementById('largeImage').value,
+        smallImage: document.getElementById('smallImage').value,
+      };
+
+      await fetch('/update-status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      alert('Status updated!');
+    });
+  </script>
+</body>
+</html>
